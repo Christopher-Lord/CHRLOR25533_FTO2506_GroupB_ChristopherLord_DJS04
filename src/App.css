@@ -1,0 +1,57 @@
+:root {
+  --main-color: #ffffff;
+  --secondary-color: #f8f8f8;
+  --main-font-color: #040404;
+  --secondary-font-color: #6b7280;
+  --modal-secondary-font-color: #4b5577;
+  --tags-color: #f3f4f6;
+  --border-color: #e5e7eb;
+  --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+}
+
+.loading-msg {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  min-width: 17rem;
+
+  background-color: var(--main-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+
+  padding: 1rem 2rem;
+
+  border-radius: 1rem;
+  box-shadow: var(--primary-box-shadow);
+}
+
+.error-msg {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  min-width: 17rem;
+
+  color: rgb(255, 48, 48);
+  background-color: var(--main-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+
+  padding: 1rem 2rem;
+
+  border-radius: 1rem;
+  box-shadow: var(--primary-box-shadow);
+}
