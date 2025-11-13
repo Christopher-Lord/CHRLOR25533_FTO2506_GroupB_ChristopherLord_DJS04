@@ -63,7 +63,7 @@ body {
 }
 
 .load-more-btn {
-  margin: 2rem 2rem 1rem 2rem;
+  margin: 2rem 2rem 0rem 2rem;
   padding: 0.5rem 1.25rem;
 
   border: none;
@@ -86,5 +86,5 @@ body {
   font-family: inherit;
   font-size: 0.8rem;
 
-  margin-top: 0;
+  margin-top: 1rem;
 }
