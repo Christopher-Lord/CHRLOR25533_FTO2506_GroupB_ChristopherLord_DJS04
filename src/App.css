@@ -55,3 +55,36 @@ body {
   border-radius: 1rem;
   box-shadow: var(--primary-box-shadow);
 }
+
+.load-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.load-more-btn {
+  margin: 2rem 2rem 1rem 2rem;
+  padding: 0.5rem 1.25rem;
+
+  border: none;
+  border-radius: 0.25rem;
+
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--main-font-color);
+
+  background: #dadada;
+}
+
+.load-more-btn:hover {
+  cursor: pointer;
+  background: #c0c0c0;
+}
+
+.page-info {
+  font-family: inherit;
+  font-size: 0.8rem;
+
+  margin-top: 0;
+}
