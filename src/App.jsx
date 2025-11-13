@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useFetch } from "./hooks/useFetch.jsx";
 import { createGenreLookup } from "./utils/lookup.js";
 import { usePagination } from "./hooks/usePagination.jsx";
+import SearchBar from "./components/SearchBar.jsx";
 import PodcastGrid from "./components/PodcastGrid.jsx";
 import Filter from "./components/Filter.jsx";
 import { genres } from "./data.js";
@@ -18,6 +19,7 @@ export default function App() {
   // Using the custom hook to fetch data, along with loading and error states
   const { data, isLoading, error } = useFetch(API_KEY);
   const [selectedGenre, setSelectedGenre] = useState("all-genres");
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Creating the genre lookup utility
   const genreLookup = createGenreLookup(genres);
@@ -33,6 +35,12 @@ export default function App() {
     podcasts = podcasts.filter((pod) => pod.genres.includes(selectedGenre));
   }
 
+  if (searchTerm.trim !== "") {
+    podcasts = podcasts.filter((pod) =>
+      pod.title.toLowerCase().includes(searchTerm.toLocaleLowerCase()),
+    );
+  }
+
   const ITEMS_PER_PAGE = 12;
   const {
     paginatedData: visiblePodcasts,
@@ -44,7 +52,7 @@ export default function App() {
 
   useEffect(() => {
     resetPagination();
-  }, [selectedGenre]);
+  }, [selectedGenre, searchTerm]);
 
   // Handles loading and error states. displaying appropriate messages for both
   if (isLoading) {
@@ -58,13 +66,17 @@ export default function App() {
 
   return (
     <>
-      {/* Filter component: Allows user to select a genre */}
-      <Filter
-        genres={genres}
-        selectedGenre={selectedGenre}
-        setSelectedGenre={setSelectedGenre}
-      />
+      <div className="filter-container">
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
+        {/* Filter component: Allows user to select a genre */}
+        <Filter
+          genres={genres}
+          selectedGenre={selectedGenre}
+          setSelectedGenre={setSelectedGenre}
+        />
+      </div>
+      
       {/* PodcastGrid component: Displays the podcast cards in a grd layout */}
       <PodcastGrid podcasts={visiblePodcasts} />
 
