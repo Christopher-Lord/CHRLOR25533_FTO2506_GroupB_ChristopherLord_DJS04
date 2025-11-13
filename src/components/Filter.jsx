@@ -13,7 +13,6 @@ import "./Filter.css"
 export default function Filter({ genres, selectedGenre, setSelectedGenre }) {
   return (
     <section className="filter">
-      <label htmlFor="filter-genres">Filter by: </label>
       {/* Dropdown menu for selecting a podcast genre
           The selected value is controlled by the "selectedGenre" state
           Updated with "setSelectedGenre" function when the user changes their selection */}
@@ -32,9 +31,11 @@ export default function Filter({ genres, selectedGenre, setSelectedGenre }) {
       </select>
       {/* Secondary dropdown for sorting podcasts by dates (Currently non-functional) */}
       <select name="filter-select" id="filter-updated">
-        <option value="recent">Recently Updated</option>
+        <option value="default">Default</option>
         <option value="popular">Most Popular</option>
-        <option value="newest">Newest</option>
+        <option value="newest">Most Recent</option>
+        <option value="az">A-Z</option>
+        <option value="za">Z-A</option>
       </select>
     </section>
   );
