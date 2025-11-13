@@ -108,10 +108,7 @@ li {
 
   .podcast-cards {
     display: grid;
-    grid-template: auto / repeat(
-        auto-fit,
-        minmax(max(var(--grid-min-col-size), var(--grid-col-calc)), 1fr)
-      );
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: var(--grid-gap);
 
     padding: 0 2rem;
