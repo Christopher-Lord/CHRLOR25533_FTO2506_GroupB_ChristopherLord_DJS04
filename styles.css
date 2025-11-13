@@ -38,8 +38,6 @@ body {
 
 main {
   background: var(--secondary-color);
-
-  height: 100vh;
 }
 
 /* 
