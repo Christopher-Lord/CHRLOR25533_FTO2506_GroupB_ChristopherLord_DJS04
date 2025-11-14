@@ -2,9 +2,73 @@
 
 ## Project Overview
 
-In this project, you will build an advanced podcast browsing experience that allows users to dynamically **search**, **sort**, **filter**, and **paginate** a list of podcast shows. The goal is to create an intuitive interface that responds to user input in real time and maintains a consistent, seamless experience throughout navigation.
+This project is an advanced podcast browsing experience that allows users to dynamically **search**, **sort**, **filter**, and **paginate** a list of podcast shows. It has an intuitive interface that responds to user input in real time and maintains a consistent, seamless experience throughout navigation.
 
-This project will test your ability to manage complex UI state, synchronise multiple user interactions, and maintain clean, scalable code.
+## Setup Instructions
+
+- Make sure you have `Node.js` and `npm` installed
+- Open VSCode and clone this repo (`https://github.com/Christopher-Lord/CHRLOR25533_FTO2506_GroupB_ChristopherLord_DJS04.git`)
+- After cloning, change your current directory to the newly cloned project folder (`cd repository-name`)
+- The `package.json` file in this project contains all required dependencies: Install them using `npm install`
+- Once dependencies are installed, start the dev server using `npm run dev`
+- Navigate to the given `http://localhost` domain in your browser
+- Browse the web page!
+
+## Features
+
+- Fetched podcast data from a given API using `useEffect()`
+- Renders podcast cards dynamically
+- Uses **React components** to display elements for the podcast cards, podcast grid, filters and search bar
+- Allows the user to type in a search bar to find a specific podcast by title
+- Allows for filtering the list of podcasts by genre
+- Also allows for sorting the list of podcasts by most recent, A-Z or Z-A
+- Includes pagination with a **Load More** button, allowing the list of podcasts to be displayed in chunks
+
+## Key Takeaways
+
+### 1. **Modular Design**
+
+- Code is split into small, focused modules.
+- Each file has a **single responsibility**, making it easier to understand and maintain.
+
+### 2. **Factory Functions**
+
+- `lookup` Module returns objects that encapsulate logic.
+- This promotes **encapsulation** and **reuse**.
+
+  Example:
+
+  ```js
+  const genreLookup = createGenreLookup(genresArray);
+  genreLookup.getGenreTitlesByIds(genreIds);
+  ```
+
+### 3. Abstraction
+
+- Internals (like how date formatting works) are hidden behind clear interfaces.
+
+- Consumers don’t need to know how something works, only what it does.
+
+### 4. SRP (Single Responsibility Principle)
+
+- Each module does one thing:
+  - `useFetch.jsx` - creates a custom React hook to fetch data from a given API
+  - `PodcastCard.jsx` – creates a React component for a single podcast card
+  - `PodcastGrid.jsx` – creates a grid layout to display all podcast cards in an aesthetic way
+  - `GenreFilter.jsx` - creates a React component for the genre filter elements
+  - `SortFilter.jsx` - creates a React component for the sorting elements
+  - `SearchBar.jsx` - creates a React component for the a functioning search bar
+  - `PodcastContext.jsx` - Holds all data relating to states, and creates a React context so those states can be used elsewhere 
+  - `usePagination.jsx` - creates a custom React hook to enable pagination through a load more button 
+  - `lookup.js` – manages data lookups
+  - `App.jsx` - creates the main App component to bring all the other components together
+
+### 5. Clear Entry Point
+
+- `main.jsx` acts as the orchestrator, setting up the app and wiring components together.
+- This keeps global logic and setup in one place.
+
+---
 
 ## Core Objectives
 
@@ -59,19 +123,16 @@ Since the podcast preview information fetched from the API only exposes genres b
 ## Project Deliverables
 
 - A fully functional React app that:
-
   - Fetches and displays podcast data.
   - Allows live searching, sorting, filtering, and pagination.
   - Maintains consistent state across all UI interactions.
 
 - **Clean Codebase** with:
-
   - Reusable, modular components.
   - Clear and consistent formatting across all files.
   - JSDoc comments for functions/modules.
 
 - **README.md** with:
-
   - Project overview and purpose.
   - Setup and usage instructions.
   - Descriptions of key features (search, filter, sort, pagination).
