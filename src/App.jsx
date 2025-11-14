@@ -7,11 +7,17 @@ import SortFilter from "./components/SortFilter.jsx";
 import "./App.css";
 
 /**
- * Main app component that fetches, filters and displays podcasts
+ * Main app component
+ *
+ * This component:
+ * - Retrieves podcast data and UI state from PodcastContext
+ * - Applies pagination using the usePagination hook
+ * - Renders search, filters and paginated podcast grid
  *
  * @returns {JSX.Element} The rendered application UI
  */
 export default function App() {
+  // Access shared podcast state and actions from PodcastContext
   const {
     isLoading,
     error,
@@ -25,6 +31,7 @@ export default function App() {
     setSortOption,
   } = usePodcasts();
 
+  // Call pagination hook to be used in the component
   const {
     paginatedData: visiblePodcasts,
     loadMore,
@@ -44,11 +51,11 @@ export default function App() {
 
   return (
     <>
+      {/* Search bar and filters section */}
       <div className="filter-container">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
         <div className="filter">
-          {/* Filter component: Allows user to select a genre */}
           <GenreFilter
             genres={genres}
             selectedGenre={selectedGenre}
@@ -59,9 +66,10 @@ export default function App() {
         </div>
       </div>
 
-      {/* PodcastGrid component: Displays the podcast cards in a grd layout */}
+      {/* PodcastGrid component: Displays the podcast cards in a responsive grid layout */}
       <PodcastGrid podcasts={visiblePodcasts} />
 
+      {/* Pagination controls */}
       <div className="load-more">
         {currentPage < totalPages && (
           <button className="load-more-btn" onClick={loadMore}>
@@ -69,6 +77,7 @@ export default function App() {
           </button>
         )}
 
+        {/* Info text showing count of displayed items */}
         <p className="page-info">
           Showing {visiblePodcasts.length} of {podcasts.length} podcasts
         </p>
