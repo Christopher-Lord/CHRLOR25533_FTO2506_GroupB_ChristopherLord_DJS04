@@ -4,7 +4,8 @@ import { createGenreLookup } from "./utils/lookup.js";
 import { usePagination } from "./hooks/usePagination.jsx";
 import SearchBar from "./components/SearchBar.jsx";
 import PodcastGrid from "./components/PodcastGrid.jsx";
-import Filter from "./components/Filter.jsx";
+import GenreFilter from "./components/GenreFilter.jsx";
+import SortFilter from "./components/SortFilter.jsx";
 import { genres } from "./data.js";
 import "./App.css";
 
@@ -20,6 +21,7 @@ export default function App() {
   const { data, isLoading, error } = useFetch(API_KEY);
   const [selectedGenre, setSelectedGenre] = useState("all-genres");
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState("default");
 
   // Creating the genre lookup utility
   const genreLookup = createGenreLookup(genres);
@@ -41,6 +43,14 @@ export default function App() {
     );
   }
 
+  if (sortOption === "newest") {
+    podcasts.sort((a, b) => new Date(b.updated) - new Date(a.updated));
+  } else if (sortOption === "az") {
+    podcasts.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sortOption === "za") {
+    podcasts.sort((a, b) => b.title.localeCompare(a.title));
+  }
+
   const ITEMS_PER_PAGE = 12;
   const {
     paginatedData: visiblePodcasts,
@@ -52,7 +62,7 @@ export default function App() {
 
   useEffect(() => {
     resetPagination();
-  }, [selectedGenre, searchTerm]);
+  }, [selectedGenre, searchTerm, sortOption]);
 
   // Handles loading and error states. displaying appropriate messages for both
   if (isLoading) {
@@ -69,14 +79,18 @@ export default function App() {
       <div className="filter-container">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-        {/* Filter component: Allows user to select a genre */}
-        <Filter
-          genres={genres}
-          selectedGenre={selectedGenre}
-          setSelectedGenre={setSelectedGenre}
-        />
+        <div className="filter">
+          {/* Filter component: Allows user to select a genre */}
+          <GenreFilter
+            genres={genres}
+            selectedGenre={selectedGenre}
+            setSelectedGenre={setSelectedGenre}
+          />
+
+          <SortFilter sortOption={sortOption} setSortOption={setSortOption} />
+        </div>
       </div>
-      
+
       {/* PodcastGrid component: Displays the podcast cards in a grd layout */}
       <PodcastGrid podcasts={visiblePodcasts} />
 
