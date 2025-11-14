@@ -14,6 +14,23 @@
   margin: 0;
 }
 
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.clear-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.clear-icon:hover {
+  color: #333;
+}
+
 /* Mobile: full width */
 @media (max-width: 541px) {
   .search-bar input {
