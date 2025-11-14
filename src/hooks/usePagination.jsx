@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function usePagination(data, itemsPerPage) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,6 +16,10 @@ export function usePagination(data, itemsPerPage) {
   function resetPagination() {
     setCurrentPage(1);
   }
+
+  useEffect(() => {
+    resetPagination();
+  }, [data]);
 
   return {
     currentPage,
